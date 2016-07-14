@@ -1,0 +1,298 @@
+==================== Methods of tweets =================t
+
+filter_level
+filter_level?
+in_reply_to_screen_name
+in_reply_to_screen_name?
+lang
+lang?
+source
+source?
+text
+text?
+favorite_count
+favorite_count?
+in_reply_to_status_id
+in_reply_to_status_id?
+in_reply_to_user_id
+in_reply_to_user_id?
+retweet_count
+retweet_count?
+favorites_count
+favoriters_count
+in_reply_to_tweet_id
+reply?
+retweeters_count
+geo
+geo?
+metadata
+metadata?
+place
+place?
+retweeted_status
+retweeted_status?
+quoted_status
+quoted_status?
+retweeted_tweet
+retweet?
+retweeted_tweet?
+quoted_tweet
+quote?
+quoted_tweet?
+user
+user?
+favorited?
+favorited
+possibly_sensitive?
+possibly_sensitive
+retweeted?
+retweeted
+truncated?
+truncated
+full_text
+uri
+url
+entities?
+hashtags
+hashtags?
+media
+media?
+symbols
+symbols?
+uris
+urls
+uris?
+urls?
+user_mentions
+user_mentions?
+created_at
+created?
+id
+id?
+eql?
+==
+hash
+inspect
+attrs
+to_h
+to_hash
+to_hsh
+[]
+freeze
+memoize
+to_json
+psych_to_yaml
+to_yaml
+to_yaml_properties
+blank?
+present?
+presence
+to_param
+to_query
+acts_like?
+duplicable?
+deep_dup
+in?
+presence_in
+instance_values
+instance_variable_names
+as_json
+with_options
+html_safe?
+`
+pretty_print
+pretty_print_cycle
+pretty_print_instance_variables
+pretty_print_inspect
+require_or_load
+require_dependency
+load_dependency
+unloadable
+try
+try!
+nil?
+===
+=~
+!~
+<=>
+class
+singleton_class
+clone
+dup
+itself
+taint
+tainted?
+untaint
+untrust
+untrusted?
+trust
+frozen?
+to_s
+methods
+singleton_methods
+protected_methods
+private_methods
+public_methods
+instance_variables
+instance_variable_get
+instance_variable_set
+instance_variable_defined?
+remove_instance_variable
+instance_of?
+kind_of?
+is_a?
+tap
+send
+public_send
+respond_to?
+extend
+display
+method
+public_method
+singleton_method
+define_singleton_method
+object_id
+to_enum
+enum_for
+gem
+class_eval
+byebug
+debugger
+pretty_inspect
+suppress_warnings
+equal?
+!
+!=
+instance_eval
+instance_exec
+__send__
+__id__
+
+
+============================== Example Tweet ===========================
+
+{
+  "created_at": "Wed Jul 13 23:56:59 +0000 2016",
+  "id": 753377717798727680,
+  "id_str": "753377717798727680",
+  "text": "Norfolk County has 25K feral cats https://t.co/UddC1ZbgfJ @torontostar. @uofg Question is: could this be normal for similar areas? Scary.",
+  "truncated": false,
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "user_mentions": [
+      {
+        "screen_name": "TorontoStar",
+        "name": "TorontoStar",
+        "id": 12848262,
+        "id_str": "12848262",
+        "indices": [
+          58,
+          70
+        ]
+      },
+      {
+        "screen_name": "uofg",
+        "name": "University of Guelph",
+        "id": 16134692,
+        "id_str": "16134692",
+        "indices": [
+          72,
+          77
+        ]
+      }
+    ],
+    "urls": [
+      {
+        "url": "https://t.co/UddC1ZbgfJ",
+        "expanded_url": "http://on.thestar.com/29yE9Zr",
+        "display_url": "on.thestar.com/29yE9Zr",
+        "indices": [
+          34,
+          57
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "iso_language_code": "en",
+    "result_type": "recent"
+  },
+  "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 24805185,
+    "id_str": "24805185",
+    "name": "Ryan Norris",
+    "screen_name": "NorrisLab",
+    "location": "Guelph, ON",
+    "description": "University Research Chair & Associate Professor, Department of Integrative Biology, University of Guelph; email: rnorris@uoguelph.ca",
+    "url": "http://t.co/UulctXqZxj",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "http://t.co/UulctXqZxj",
+            "expanded_url": "http://www.norrislab.ca",
+            "display_url": "norrislab.ca",
+            "indices": [
+              0,
+              22
+            ]
+          }
+        ]
+      },
+      "description": {
+        "urls": []
+      }
+    },
+    "protected": false,
+    "followers_count": 371,
+    "friends_count": 84,
+    "listed_count": 11,
+    "created_at": "Tue Mar 17 00:29:53 +0000 2009",
+    "favourites_count": 159,
+    "utc_offset": -14400,
+    "time_zone": "Eastern Time (US & Canada)",
+    "geo_enabled": false,
+    "verified": false,
+    "statuses_count": 358,
+    "lang": "en",
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://pbs.twimg.com/profile_background_images/229122056/P1010044.jpg",
+    "profile_background_image_url_https": "https://pbs.twimg.com/profile_background_images/229122056/P1010044.jpg",
+    "profile_background_tile": false,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/568487783560257536/4IFWiBYI_normal.png",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/568487783560257536/4IFWiBYI_normal.png",
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/24805185/1462293268",
+    "profile_link_color": "3B94D9",
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "has_extended_profile": false,
+    "default_profile": false,
+    "default_profile_image": false,
+    "following": null,
+    "follow_request_sent": null,
+    "notifications": null
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "is_quote_status": false,
+  "retweet_count": 0,
+  "favorite_count": 0,
+  "favorited": false,
+  "retweeted": false,
+  "possibly_sensitive": false,
+  "lang": "en"
+},

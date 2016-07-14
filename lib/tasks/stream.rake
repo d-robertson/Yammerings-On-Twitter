@@ -2,20 +2,16 @@ namespace :stream do
   desc "The main stream"
   task :start => :environment do
     require 'tweetstream'
-
+    # Initialize our Tweetstream with our authorization
     TweetStream.configure do |config|
-      config.consumer_key        = "JIUkzUtMgGSnfazIlBym58KrT"
-      config.consumer_secret     = "tw9tfKXbj9AoKhMa5wOcjuuFW0VnC8zfX5FhezdMarNUA2GJwL"
-      config.oauth_token         = "753324420823789568-Zil4pPBvyVfTAgfTPSMmZkvcO8xs3VM"
-      config.oauth_token_secret  = "L3aQUhQbLjtaVVsFk1XVeQtdnBooktqXg7Z3nGiBItSEz"
+      config.consumer_key        = ENV["CONSUMER_KEY"]
+      config.consumer_secret     = ENV["CONSUMER_SECRET"]
+      config.oauth_token         = ENV["OAUTH_TOKEN"]
+      config.oauth_token_secret  = ENV["OAUTH_TOKEN_SECRET"]
       config.auth_method         = :oauth
     end
 
-    # TweetStream::Client.new.sample do |status|
-    #   puts "#{status.inspect}"
-    # end
-
-
+    # Define TweetStream::Daemon
     class TweetStream::Daemon
       def start(path, query_parameters = {}, &block) #:nodoc:
         # Because of a change in Ruvy 1.8.7 patchlevel 249, you cannot call anymore
@@ -28,23 +24,26 @@ namespace :stream do
       end
     end
 
-
-
+    # Open the stream and load each module in modules/
     @daemon = TweetStream::Daemon.new('tweet_streamer')
     require_relative './modules/time.rb'
-    # daemon.on_inited do
-    #   ActiveRecord::Base.connection.reconnect!
-    #   ActiveRecord::Base.logger = Logger.new(File.open(log, 'a'))
-    # end
-    
-    # you can .track('pokemon', 'reno', 'vegas')  
-    # daemon.sample do |s|
-    #   puts "#{s.text}"
-    # end
-  end
+    require_relative './modules/geolocation.rb'
 
-  # TweetStream::Client.new.sample do |status|
-  #   puts "#{status.text}"
+  end
+end
+
+# =========== NOTES ============
+
+# daemon.on_inited do
+  #   ActiveRecord::Base.connection.reconnect!
+  #   ActiveRecord::Base.logger = Logger.new(File.open(log, 'a'))
+  # end
+  
+  # you can .track('pokemon', 'reno', 'vegas')  
+  # daemon.sample do |s|
+  #   puts "#{s.text}"
   # end
 
-end
+# TweetStream::Client.new.sample do |status|
+    #   puts "#{status.inspect}"
+    # end
