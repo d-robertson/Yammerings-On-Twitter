@@ -1,3 +1,23 @@
+
+# Search for pokemon and return nil or the position in the tweet (treatng as true)
+@daemon.sample do |s|
+  if s.text =~ /(pokemon)/i
+    puts "#{s.text}" 
+  end
+end
+
+
+# Search for pokemon and return an array of matches (which will be pokemon)
+@daemon.sample do |s|
+  s = s.text.scan(/(pokemon)/i)
+  if s.length > 0
+      puts "#{s}" 
+  end
+end
+
+#substitution - replaces pokemon with "".
+phone = phone.sub!(/pokemon/, "")
+
 ==================== Methods of tweets =================t
 
 filter_level
