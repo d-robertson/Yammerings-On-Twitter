@@ -1,2 +1,6 @@
 <h1>Location#index</h1>
 <p>Find me in app/views/location/index.html.erb</p>
+
+<% @locations.each do |location| %>
+  <h1><%= location.state %></h1>
+<% end %>
