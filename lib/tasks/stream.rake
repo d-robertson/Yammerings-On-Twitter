@@ -30,20 +30,21 @@ namespace :stream do
 
 
 
-    # TweetStream::Daemon.new.sample do |status|
-    daemon = TweetStream::Daemon.new.sample do |status|
-    # TweetStream::Daemon.new('tweet_streamer').track('pokemon') do |status|
-      # daemon.on_inited do
-      #   ActiveRecord::Base.connection.reconnect!
-      #   ActiveRecord::Base.logger = Logger.new(File.open(log, 'a'))
-      # end
-      # daemon.track('harvey', 'beyonce', 'kanye', 'kardashian') do |status|
-      
-      daemon.track('pokemon') do |status|
-        puts "#{status.text}"
-      #   # ::Tweet.create_from_status(status)
-      end
-
-    end
+    @daemon = TweetStream::Daemon.new('tweet_streamer')
+    require_relative './modules/time.rb'
+    # daemon.on_inited do
+    #   ActiveRecord::Base.connection.reconnect!
+    #   ActiveRecord::Base.logger = Logger.new(File.open(log, 'a'))
+    # end
+    
+    # you can .track('pokemon', 'reno', 'vegas')  
+    # daemon.sample do |s|
+    #   puts "#{s.text}"
+    # end
   end
+
+  # TweetStream::Client.new.sample do |status|
+  #   puts "#{status.text}"
+  # end
+
 end
