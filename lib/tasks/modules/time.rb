@@ -3,8 +3,10 @@ require 'tweetstream'
 @array = []
 
 @daemon.sample do |s|
-  if s.text =~ /(pokemon)/i
+  puts "--------------------"
+  if s.text =~ /(ing)/i
     puts "#{s.text}" 
+
   end
 
 end
@@ -13,3 +15,6 @@ end
 # ^help\W
 # time regex
 # \d+[\:\.]\d{2}
+
+
+
