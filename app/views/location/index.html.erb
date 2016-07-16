@@ -1,6 +1,21 @@
 <h1>Location#index</h1>
 <p>Find me in app/views/location/index.html.erb</p>
 
+<div id="tooltip"></div><!-- div to hold tooltip. -->
+<svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
+
+
+
+
 <% @locations.each do |location| %>
-  <h1><%= location.state %></h1>
+  <h1><% JSON.parse(location.state).each do |key, action| %></h1>
+    <p><%= key %></p>
+    <p><% action.each do |pkey, prop| %></p>
+      <p><%= pkey %></p>
+      <p><%= prop %></p>
+    <% end %>
+  <% end %>
 <% end %>
+
+<!-- .to_json.gsub!(/\"/, '\'') -->
+<!-- .gsub!(/'/, '"') -->

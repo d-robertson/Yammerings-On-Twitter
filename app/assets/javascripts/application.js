@@ -14,6 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require d3.v3
-//= require liquidFillGuage
-//= require misc
-
+//= require uStates
+//= require location

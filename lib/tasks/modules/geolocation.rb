@@ -2,10 +2,10 @@ require 'tweetstream'
 
 @daemon.sample do |s|
   if (s.user.location =~ /USA/)
-    puts "---------------------"    
-    puts s.user.location
+    # puts "---------------------"    
+    # puts s.user.location
     if (s.text =~ /(\d{2})/)
-      puts ""
+      # puts ""
     end
   end
 end
