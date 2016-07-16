@@ -29,7 +29,6 @@ namespace :stream do
     # require_relative './modules/time.rb'
     # require_relative './modules/geolocation.rb'
     require_relative './modules/action.rb'
-
   end
 end
 
