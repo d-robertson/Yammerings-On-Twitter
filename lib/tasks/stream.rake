@@ -28,6 +28,7 @@ namespace :stream do
     @daemon = TweetStream::Daemon.new('tweet_streamer')
     require_relative './modules/geolocation.rb'
     require_relative './modules/action.rb'
+    require_relative './modules/hashtag.rb'
   end
 end
 
