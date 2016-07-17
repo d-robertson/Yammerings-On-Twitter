@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   get 'hashtag', to: 'hashtag#index'
 
+  get 'location/data', to: 'location#data'
   get 'location', to: 'location#index'
 
   get 'verb', to: 'verb#index'

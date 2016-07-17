@@ -7,8 +7,8 @@ require 'tweetstream'
     if (s =~ /\s/i)
       next
     end
-    puts s.class
-    puts s
+    # puts s.class
+    # puts s
     # Action.create(verb: s)
   end
 end
