@@ -18,6 +18,15 @@ end
 #substitution - replaces pokemon with "".
 phone = phone.sub!(/pokemon/, "")
 
+==================== Misc =================t
+
+# puts "#{s.text}"
+# help regex
+# ^help\W
+# time regex
+# \d+[\:\.]\d{2}
+
+
 ==================== Methods of tweets =================t
 
 filter_level

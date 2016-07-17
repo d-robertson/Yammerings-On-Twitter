@@ -26,8 +26,9 @@ namespace :stream do
 
     # Open the stream and load each module in modules/
     @daemon = TweetStream::Daemon.new('tweet_streamer')
-    require_relative './modules/geolocation.rb'
-    require_relative './modules/action.rb'
+    # We require here so that the stream is already active by the time each module opens
+    # require_relative './modules/geolocation.rb'
+    # require_relative './modules/action.rb'
     require_relative './modules/hashtag.rb'
   end
 end
