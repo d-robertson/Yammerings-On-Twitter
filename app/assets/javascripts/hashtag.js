@@ -27,7 +27,7 @@ function makeChart(tweets) {
   var width = 1024,
       height = 500,
       padding = 2, // separation between nodes
-      maxRadius = 18;
+      maxRadius = 16;
 
   // var n = 100, // total number of nodes
   var m = 3; // number of distinct clusters
@@ -59,7 +59,7 @@ function makeChart(tweets) {
     };
   });
 
-  
+
   // console.log(nodes);
 
   // -----------------------------

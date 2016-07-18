@@ -33,18 +33,19 @@ analyzer.threshold = 0.1 # Set a global threshold
           # make list of hashtags & sentiment. Commit to db every so often
 
 
-          # if analy_score
-          #   db_hashtag = Hashtag.find_or_create_by(tag: t)
-          #   # Double check my 'adding to average' math
-          #   # avg = sum/n
-          #   # We have the avg and the n. So we find sum, add to it, and divide by new n to get new avg
-          #   db_hashtag.count ? db_hashtag.count+=1 : db_hashtag.count=1
-          #   db_hashtag.sentiment ? 
-          #     db_hashtag.sentiment = ((db_hashtag.sentiment * (db_hashtag.count-1)) + (analy_score)) / (db_hashtag.count) : 
-          #     db_hashtag.sentiment = analy_score
-          #   # Increment and save
-          #   db_hashtag.save
-          # end
+          if analy_score
+            puts t
+            db_hashtag = Hashtag.find_or_create_by(tag: t)
+            # Double check my 'adding to average' math
+            # avg = sum/n
+            # We have the avg and the n. So we find sum, add to it, and divide by new n to get new avg
+            db_hashtag.count ? db_hashtag.count+=1 : db_hashtag.count=1
+            db_hashtag.sentiment ? 
+              db_hashtag.sentiment = ((db_hashtag.sentiment * (db_hashtag.count-1)) + (analy_score)) / (db_hashtag.count) : 
+              db_hashtag.sentiment = analy_score
+            # Increment and save
+            db_hashtag.save
+          end
           
         end
       end
