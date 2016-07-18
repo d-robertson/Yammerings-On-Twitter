@@ -1,16 +1,25 @@
 <h1>Else#index</h1>
 <p>Find me in app/views/else/index.html.erb</p>
 
-
 <% @elses.each do |e| %>
   <p><%= e.counters %></p>
-  <p><%= JSON.parse(e.counters)["tweets"] %></p>
+  <% total = JSON.parse(e.counters)["total"] %>
+  <% death = JSON.parse(e.counters)["death"] %>
+  <% murder = JSON.parse(e.counters)["murder"] %>
+  <% kill = JSON.parse(e.counters)["kill"] %>
+  <% pokemon = JSON.parse(e.counters)["pokemon"] %>
+  <% help = JSON.parse(e.counters)["help"] %>
+  <% birthday = JSON.parse(e.counters)["birthday"] %>
+  <% money = JSON.parse(e.counters)["money"] %>
+
 <% end %>
 
-<svg id="fillgauge1" width="97%" height="250" onclick="gauge1.update(NewValue());"></svg>
-<svg id="fillgauge2" width="19%" height="200" onclick="gauge2.update(NewValue());"></svg>
-<svg id="fillgauge3" width="19%" height="200" onclick="gauge3.update(NewValue());"></svg>
-<svg id="fillgauge4" width="19%" height="200" onclick="gauge4.update(NewValue());"></svg>
-<svg id="fillgauge5" width="19%" height="200" onclick="gauge5.update(NewValue());"></svg>
-<svg id="fillgauge6" width="19%" height="200" onclick="gauge6.update(NewValue());"></svg>
+
+
+<svg id="fillgauge1" width="97%" height="250"></svg>
+<svg id="fillgauge2" width="19%" height="200"></svg>
+<svg id="fillgauge3" width="19%" height="200"></svg>
+<svg id="fillgauge4" width="19%" height="200"></svg>
+<svg id="fillgauge5" width="19%" height="200"></svg>
+<svg id="fillgauge6" width="19%" height="200"></svg>
 

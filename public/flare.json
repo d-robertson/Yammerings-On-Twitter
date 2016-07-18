@@ -1,0 +1,19 @@
+{
+ "verb": "flare",
+ "children": [
+  {
+   "verb": "analytics",
+   "children": [
+    {
+     "verb": "cluster",
+     "children": [
+      {"verb": "AgglomerativeCluster", "count": 3938},
+      {"verb": "CommunityStructure", "count": 3812},
+      {"verb": "HierarchicalCluster", "count": 6714},
+      {"verb": "MergeEdge", "count": 743}
+     ]
+    }
+   ]
+  }
+ ]
+}
