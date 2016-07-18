@@ -19,12 +19,14 @@ ActiveRecord::Schema.define(version: 20160716002533) do
     t.string   "verb"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "count"
   end
 
   create_table "hashtags", force: :cascade do |t|
     t.string   "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "count"
   end
 
   create_table "locations", force: :cascade do |t|
