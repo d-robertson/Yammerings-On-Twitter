@@ -132,39 +132,22 @@ puts "started geo"
   if (s.user.location =~ /((?:\w+\s?)+),\s?usa?/i)
     if (s.user.location.length > 0)
       abbr = s.user.location.scan(/((?:\w+\s?)+),\s?usa?/i) # Get long state
-      # puts abbr
       abbr = get_abbr(abbr[0][0]) # Convert long state to abbr using lookup
-      # puts abbr
       if abbr
         states[abbr] = states[abbr].to_i + 1
       end
-      # puts states
       single_row = Location.find_by_id(9)
-      # states = states.to_json.gsub!(/\"/, '\'')
-      # puts states.to_json
       single_row.state = states.to_json
-      puts "timer1: #{timer}"
-      timer -= 1
-      puts "timer2: #{timer}"
 
+      # The Timer. It runs not on time, but on the number of events.
+      # Specifically, every x geolocation adds.
+      timer -= 1
       if timer != -1
         if timer == 0
-          puts 'ding ding'
           single_row.save
-          puts 'ding ding'
           timer = 10
         end
       end
-
-      # <% @locations.each do |location| %>
-      #   <h1><% JSON.parse(location.state).each do |key, action| %></h1>
-      #     <p><%= key %></p>
-      #     <p><% action.each do |pkey, prop| %></p>
-      #       <p><%= pkey %></p>
-      #       <p><%= prop %></p>
-      #     <% end %>
-      #   <% end %>
-      # <% end %>
 
     end
   end
