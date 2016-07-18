@@ -52,12 +52,15 @@ function makeChart(tweets) {
         v = 0.1 + Math.abs(val.sentiment)
     return {
       radius: (Math.sqrt(val.count)*1.2) * maxRadius,
-      color: d3.interpolate("#e5f19e", "#48d096")( (val.sentiment+ Math.abs(minSent))/(Math.abs(minSent)+maxSent) ),
+      color: d3.interpolate("#faffa0", "#20865a")( (val.sentiment+ Math.abs(minSent))/(Math.abs(minSent)+maxSent) ),
       cx: x(i),
-      cy: height / 2
+      cy: height / 2,
+      text: val.tag
     };
   });
 
+  
+  // console.log(nodes);
 
   // -----------------------------
 
@@ -82,16 +85,37 @@ function makeChart(tweets) {
       .style("fill", function(d) { return d.color; })
       .call(force.drag);
 
+  // Declare tooltip here using D3. For later.
+  var tooltip = d3.select("body")
+      .append("div")
+      .attr('class', 'tooltip')
+      .text("");
+
+  // Basically the entire tooltip everything here.
+  svg.selectAll('g')
+      .on('mouseover', function(){
+        return tooltip.style("visibility", "visible"), tooltip.text(this.__data__.text);
+      })
+      .on('mouseout', function(){return tooltip.style("visibility", "hidden");})
+      .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+
+  // Set text equal to the data inside the elements.
+  // WORK ON FOR IMPROVEMENT
   var text = svg.selectAll('g')
      .append('text')
-     .text('test')
+     .text(function() {
+        return this.__data__.text
+     })
      .attr('font-size', function() {
+        if (this.__data__.text.length < 5) {
+          return "0.8em"
+        } else {
           return $(this)
             .parent()
             .children()[0]
-            .getAttribute('r') / 2
-    })
-     
+            .getAttribute('r') * 2 / (this.__data__.text.length * 11) + 'em'
+        }
+  })
 
   function tick(e) {
     circle
@@ -100,7 +124,7 @@ function makeChart(tweets) {
         .attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
     text
-        .attr('x', function(d) { return d.x - (d.radius / 3)})
+        .attr('x', function(d) { return d.x - (d.radius / 1.5)})
         .attr('y', function(d) { return d.y + (d.radius / 5)});
         
   }
