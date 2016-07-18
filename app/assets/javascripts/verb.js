@@ -1,50 +1,43 @@
-// document.addEventListener("DOMContentLoaded", function(event) {
-// //Width and height
-// var w = 500;
-// var h = 100;
-// var barPadding = 1;
-
-// var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-//                 11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
-
-// //Create SVG element
-// var svg = d3.select("body")
-//             .append("svg")
-//             .attr("width", w)
-//             .attr("height", h);
-
-// svg.selectAll("rect")
-//    .data(dataset)
-//    .enter()
-//    .append("rect")
-//    .attr("x", function(d, i) {
-//         return i * (w / dataset.length);
-//    })
-//    .attr("y", function(d) {
-//         return h - (d * 4);
-//    })
-//    .attr("width", w / dataset.length - barPadding)
-//    .attr("height", function(d) {
-//         return d * 4;
-//    })
-//    .attr("fill", function(d) {
-//         return "rgb(0, 0, " + (d * 10) + ")";
-//    });
-
-// svg.selectAll("text")
-//    .data(dataset)
-//    .enter()
-//    .append("text")
-//    .text(function(d) {
-//         return d;
-//    })
-//    .attr("x", function(d, i) {
-//         return i * (w / dataset.length) + 5;
-//    })
-//    .attr("y", function(d) {
-//         return h - (d * 4) + 15;
-//    })
-//    .attr("font-family", "sans-serif")
-//    .attr("font-size", "11px")
-//    .attr("fill", "white");
-// });
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log("listening");
+  var diameter = 960,
+      format = d3.format(",d"),
+      color = d3.scale.category20c();
+  var bubble = d3.layout.pack()
+      .sort(null)
+      .size([diameter, diameter])
+      .padding(1.5);
+  var svg = d3.select("body").append("svg")
+      .attr("width", diameter)
+      .attr("height", diameter)
+      .attr("class", "bubble");
+  d3.json(gon.verbs, function(error, root) {
+    if (error) throw error;
+    var node = svg.selectAll(".node")
+        .data(bubble.nodes(classes(root))
+        .filter(function(d) { return !d.children; }))
+      .enter().append("g")
+        .attr("class", "node")
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+    node.append("title")
+        .text(function(d) { return d.className + ": " + format(d.value); });
+    node.append("circle")
+        .attr("r", function(d) { return d.r; })
+        .style("fill", function(d) { return color(d.packageName); });
+    node.append("text")
+        .attr("dy", ".3em")
+        .style("text-anchor", "middle")
+        .text(function(d) { return d.className.substring(0, d.r / 3); });
+  });
+  // Returns a flattened hierarchy containing all leaf nodes under the root.
+  function classes(root) {
+    var classes = [];
+    function recurse(name, node) {
+      if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+      else classes.push({packageName: name, className: node.name, value: node.size});
+    }
+    recurse(null, root);
+    return {children: classes};
+  }
+  d3.select(self.frameElement).style("height", diameter + "px");
+});
