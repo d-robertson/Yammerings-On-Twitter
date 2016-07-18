@@ -51,7 +51,8 @@ function makeBubbles() {
         .style("text-anchor", "middle")
         .text(function(d) { return d.className.substring(0, d.r / 3); });
 }
-  // Returns a flattened hierarchy containing all leaf nodes under the root.
+
+  //Returns a flattened hierarchy containing all leaf nodes under the root.
   function classes(root) {
     var classes = [];
 
