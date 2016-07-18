@@ -14,6 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require d3.v3
+
 //= require uStates
 //= require location
 //= require hashtag
+//= require liquidFillGuage
+//= require misc
+//= require verb
+//= require else 
