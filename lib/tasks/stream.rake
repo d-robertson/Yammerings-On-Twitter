@@ -29,7 +29,7 @@ namespace :stream do
     # require_relative './modules/geolocation.rb'
     # require_relative './modules/misc.rb'
     require_relative './modules/action.rb'
-    require_relative './modules/hashtag.rb'
+    # require_relative './modules/hashtag.rb'
   end
 end
 # =========== NOTES ============
