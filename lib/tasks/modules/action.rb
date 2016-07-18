@@ -1,6 +1,7 @@
-require 'tweetstream'
+require "tweetstream"
 
 @daemon.sample do |tweet|
+  puts "*"
   s = tweet.text.scan(/i.*\s([a-z]+)ing/i)
   s = s[0][0]
   if (s.length > 2 && s.length < 10)
