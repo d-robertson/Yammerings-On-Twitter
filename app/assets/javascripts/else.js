@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
       success: function(data) {
 
         $("svg").remove();
-        everything();
+        // everything();
       }
     });
   }

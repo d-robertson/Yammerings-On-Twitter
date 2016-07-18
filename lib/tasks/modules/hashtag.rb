@@ -22,6 +22,3 @@ end
 # ^help\W
 # time regex
 # \d+[\:\.]\d{2}
-
-
-
