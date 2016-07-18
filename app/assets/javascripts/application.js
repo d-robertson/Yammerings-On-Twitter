@@ -18,3 +18,4 @@
 //= require location
 //= require liquidFillGuage
 //= require misc
+//= require verb
