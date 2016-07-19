@@ -29,10 +29,11 @@ var bubble = d3.layout.pack()
     .size([diameter, diameter])
     .padding(1.5);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".svg-wrapper").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
-    .attr("class", "bubble");
+    .attr("class", "bubble")
+    .attr("viewBox", "0 0 960 960");
 
 var jsonData = JSON.parse(gon.verbs);
 

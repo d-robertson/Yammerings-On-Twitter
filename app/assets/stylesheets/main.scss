@@ -1,17 +1,28 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$background-img: url('maxresdefault.jpg');
 $border-radius: 5px;
+$body-color: #f1f1f1;
+$med-width: 800px;
+$med-graph-width: 750px;
 
 
 body {
-  // background: url('asanoha-400px.png')
-  background: url('waves-backgrounds.jpg')
+  background-color: $body-color;
+  background-image: $background-img;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media (max-width: 1130px) {
+    background-size: auto;
+  }
 }
 
 .main-width {
-  max-width: 800px;
+  max-width: $med-width;
 }
+
 
 .head {
   margin-top: 60px;
@@ -36,4 +47,17 @@ body {
   border-bottom-right-radius: $border-radius;
   height: 50px;
   margin-bottom: 50px;
+}
+
+// ---------- SVG Graph SCSS -------
+
+.svg-wrapper {
+  background: white;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.svg-element, .bubble {
+  width: $med-graph-width;
+  left: 0;
 }

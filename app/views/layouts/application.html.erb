@@ -9,6 +9,8 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= include_gon %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Tinos:700' rel='stylesheet' type='text/css'>
     <!-- User Added -->
 
@@ -29,7 +31,9 @@
       </div>
 
       <div class="row linkbar text-center main-width">
-        <div class="small-3 columns">1</div>
+        <div class="small-3 columns">
+          <i class="fa fa-globe fa-3x" aria-hidden="true"></i>
+        </div>
         <div class="small-3 columns">2</div>
         <div class="small-3 columns">3</div>
         <div class="small-3 columns">4</div>
