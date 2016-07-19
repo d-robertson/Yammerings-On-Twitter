@@ -9,3 +9,9 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+Rails.application.config.assets.precompile += %w( location.js )
+Rails.application.config.assets.precompile += %w( uStates.js )
+Rails.application.config.assets.precompile += %w( cable.js )
+Rails.application.config.assets.precompile += %w( else.js )
+Rails.application.config.assets.precompile += %w( hashtag.js )
+Rails.application.config.assets.precompile += %w( verb.js )

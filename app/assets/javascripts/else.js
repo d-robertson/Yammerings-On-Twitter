@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
       success: function(data) {
 
         $("svg").remove();
-        // everything();
+        $('.d3-tip').remove();
+        everything();
       }
     });
   }
@@ -139,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
         .enter().append("path")
           .attr("fill", function(d) { return d.data.color; })
           .attr("class", "solidArc")
-          .attr("stroke", "gray")
+          .attr("stroke", "#grey")
           .attr("d", arc)
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide);
@@ -148,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
           .data(pie(dataArray))
         .enter().append("path")
           .attr("fill", "none")
-          .attr("stroke", "gray")
+          .attr("stroke", "#dadada")
           .attr("class", "outlineArc")
           .attr("d", outlineArc);  
 

@@ -1,3 +1,7 @@
+# =============             ============= #
+# ============= Geolocation ============= #
+# =============             ============= #
+
 
 # Search for pokemon and return nil or the position in the tweet (treatng as true)
 @daemon.sample do |s|
