@@ -140,7 +140,7 @@ def main
   puts "inside main"
   # Analyzer init
   analyzer = Sentimental.new # Create an instance for usage
-  analyzer.load_senti_file('lib/tasks/modules/rsentiment.txt') # load our custom made dictionary
+  analyzer.load_senti_file('lib/tasks/rsentiment.txt') # load our custom made dictionary
   analyzer.threshold = 0.1 # Set a global threshold
 
   # Start analyzing Tweets
