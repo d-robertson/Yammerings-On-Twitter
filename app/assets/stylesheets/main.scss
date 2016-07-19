@@ -2,11 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $background-img: url('maxresdefault.jpg');
+$serif-font: 'Tinos', serif;
 $border-radius: 5px;
 $body-color: #f1f1f1;
 $med-width: 800px;
 $med-graph-width: 750px;
 
+.main-width {
+  max-width: $med-width;
+}
+
+.head {
+  margin-top: 60px;
+  h3 {
+    font-family: $serif-font;
+    padding-bottom: 30px;
+  }
+  h6 {
+    color: darkgrey;
+  }
+}
 
 body {
   background-color: $body-color;
@@ -16,22 +31,6 @@ body {
 
   @media (max-width: 1130px) {
     background-size: auto;
-  }
-}
-
-.main-width {
-  max-width: $med-width;
-}
-
-
-.head {
-  margin-top: 60px;
-  h3 {
-    font-family: 'Tinos', serif;
-    padding-bottom: 30px;
-  }
-  h6 {
-    color: darkgrey;
   }
 }
 
@@ -47,6 +46,18 @@ body {
   border-bottom-right-radius: $border-radius;
   height: 50px;
   margin-bottom: 50px;
+}
+
+// --------------- Misc ------------
+.tooltip {
+  color: black;
+  font-size: 14pt;
+  font-family: $serif-font
+  // content: none;
+}
+
+.tooltip::before {
+  content: none;
 }
 
 // ---------- SVG Graph SCSS -------
