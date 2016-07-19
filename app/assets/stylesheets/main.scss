@@ -1,3 +1,39 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$border-radius: 5px;
+
+
+body {
+  // background: url('asanoha-400px.png')
+  background: url('waves-backgrounds.jpg')
+}
+
+.main-width {
+  max-width: 800px;
+}
+
+.head {
+  margin-top: 60px;
+  h3 {
+    font-family: 'Tinos', serif;
+    padding-bottom: 30px;
+  }
+  h6 {
+    color: darkgrey;
+  }
+}
+
+.container {
+  padding: 0 50px;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.linkbar {
+  background: white;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  height: 50px;
+  margin-bottom: 50px;
+}
