@@ -9,7 +9,7 @@ function getData() {
   console.log("running getData()")
   $.ajax({
     type: 'GET',
-    url: 'location/data',
+    url: 'data',
     dataType: 'text',
     success: function(data) {
       // console.log(JSON.parse(data))
