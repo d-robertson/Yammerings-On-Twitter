@@ -1,7 +1,7 @@
 require 'tweetstream'
 require 'json'
 counter = 0
-timer = 100
+timer = 10
 words = {}
 total = 0
 @daemon.sample do |tweet|
@@ -22,7 +22,9 @@ total = 0
         if timer == 0
           words["total"] = total
           words = words.to_json
-          timer = 100
+          puts words
+          puts words.class
+          timer = 10
           total = 0
           Misc.create(counters: words)
           words = {}

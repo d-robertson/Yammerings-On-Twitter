@@ -6,7 +6,7 @@ var minSent;
 function getData2() {
     $.ajax({
       type: 'GET',
-      url: 'data',
+      url: 'hashtag/data',
       dataType: 'text',
       success: function(data) {
         returnedData = JSON.parse(data);
@@ -51,7 +51,7 @@ function makeChart(tweets) {
     var i = sentiment,
         v = 0.1 + Math.abs(val.sentiment)
     return {
-      radius: (Math.sqrt(val.count)*1.2) * maxRadius,
+      radius: ((Math.sqrt( val.count > 100 ? 100 : val.count)*1.2 ) * maxRadius) / 2,
       color: d3.interpolate("#faffa0", "#20865a")( (val.sentiment+ Math.abs(minSent))/(Math.abs(minSent)+maxSent) ),
       cx: x(i),
       cy: height / 2,
