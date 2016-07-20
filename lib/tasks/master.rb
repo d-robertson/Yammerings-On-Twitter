@@ -1,6 +1,8 @@
 require 'tweetstream'
 require 'json'
-@start_time = Time.new.to_i
+@start_time1 = Time.new.to_i
+@start_time2 = Time.new.to_i
+@start_time3 = Time.new.to_i
 @all_tweets = []
 @default_timer = 10
 @timer = @default_timer
@@ -9,6 +11,7 @@ require 'json'
 @words = {}
 @states = {}
 @array = []
+@hash = {}
 
 
 # State conversion chart
@@ -146,7 +149,7 @@ def main
 
   # Start analyzing Tweets
   @all_tweets.each_with_index do |tweet, idx|
-    puts idx
+    # puts idx
 
     # =============        ============= #
     # ============= Action ============= #
@@ -177,18 +180,25 @@ def main
         if abbr
           @states[abbr] = @states[abbr].to_i + 1
         end
-        single_row = Location.find_by_id(9)
+        single_row = Location.new
+        # puts @states
         single_row.state = @states.to_json
+        puts single_row
 
-        # The Timer. It runs not on time, but on the number of events.
-        # Specifically, every x geolocation adds.
-
-        if (Time.now.to_i >= @start_time + 10)
-          single_row.save
-          @timer = @default_timer
+        if (Time.now.to_i >= @start_time1 + 3600)
+          @start_time1 = Time.new.to_i
+          if @states.length > 0
+            puts @states
+            # puts single_row
+            single_row.save
+          end
+          @states = {}
         end
+
       end
     end
+
+    
 
     # =============         ============= #
     # ============= Hashtag ============= #
@@ -207,21 +217,41 @@ def main
               analy_score = analyzer.score(tweet.text)
               # make list of hashtags & sentiment. Commit to db every so often
               if analy_score
-                db_hashtag = Hashtag.find_or_create_by(tag: t)
-                # Double check my 'adding to average' math
-                # avg = sum/n
-                # We have the avg and the n. So we find sum, add to it, and divide by new n to get new avg
-                db_hashtag.count ? db_hashtag.count+=1 : db_hashtag.count=1
-                db_hashtag.sentiment ? 
-                  db_hashtag.sentiment = ((db_hashtag.sentiment * (db_hashtag.count-1)) + (analy_score)) / (db_hashtag.count) : 
-                  db_hashtag.sentiment = analy_score
-                # Increment and save
-                db_hashtag.save
+                puts '6'
+                if @hash[t]
+                  puts '7'
+                  # Increment count
+                  @hash[t][0] = @hash[t][0] + 1
+                  #recalculate sentiment based on new entry provided here
+                  # ((current sentiment stored * number of voters -1)) + (new sentiment data / new number of voters)
+                  @hash[t][1] = ((@hash[t][1] * (@hash[t][0]-1)) + (analy_score)) / (@hash[t][0])
+                else
+                  @hash[t] = [1, analy_score]
+                end
+                
+                
               end
             end
           end
         end
       end
+    end
+
+    if Time.now.to_i >= @start_time2 + 3600
+      @hash.each do |tag|
+        puts tag[1]
+        if tag[1][0] > 10
+          db_hashtag = Hashtag.find_or_create_by(tag: tag[0])
+          db_hashtag.count ? db_hashtag.count+=tag[1][0] : db_hashtag.count=tag[1][0]
+          db_hashtag.sentiment ? db_hashtag.sentiment = ((db_hashtag.sentiment * (db_hashtag.count-1)) + (tag[1][1])) / (db_hashtag.count) : 
+            db_hashtag.sentiment = tag[1][1]
+          db_hashtag.save
+        end
+      end
+      
+
+      @hash = {}
+      @start_time2 = Time.now.to_i
     end
 
     # =============      ============= #
@@ -239,8 +269,8 @@ def main
           else
             @words[word] = 1
           end 
-          if (Time.now.to_i >= @start_time + 10)
-            @start_time = Time.new.to_i
+          if (Time.now.to_i >= @start_time3 + 3600)
+            @start_time3 = Time.new.to_i
             @words["@total"] = @total
             @words = @words.to_json
             Misc.create(counters: @words)
@@ -266,7 +296,7 @@ end
 # =============            ===============#
 @daemon.sample do |tweet|
   @all_tweets.push(tweet)
-  puts "INSIDE TWEET #{@all_tweets.length}"
+  # puts "INSIDE TWEET #{@all_tweets.length}"
   if @all_tweets.length > 100
     main
   end
