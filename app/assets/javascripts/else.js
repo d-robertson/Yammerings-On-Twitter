@@ -134,10 +134,12 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
             .innerRadius(innerRadius)
             .outerRadius(radius);
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select(".svg-wrapper").append("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g")
+        .attr("class", "svg-element")
+        .attr("viewBox", "0 0 960 960")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     svg.call(tip);
