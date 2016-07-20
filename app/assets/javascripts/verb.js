@@ -31,7 +31,8 @@ var bubble = d3.layout.pack()
 
 var svg = d3.select(".svg-wrapper").append("svg")
     .attr("width", diameter)
-    .attr("height", diameter)
+    .attr("height", 600)
+    // .attr("height", diameter)
     .attr("class", "bubble")
     .attr("viewBox", "0 0 960 960");
 

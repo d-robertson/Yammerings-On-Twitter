@@ -44,14 +44,16 @@ function makeChart(tweets) {
 
   var linearScale = d3.scale.linear()
                             .domain([minCount, maxCount])
-                            .range([20, 80]);
+                            .range([20, 120]);
 
   // -  -  -  -  -  -  -  -  -  -  -
 
   var nodes = tweets.map(function(val, idx) {
-    sentiment = val.sentiment > 0.0 ? 2 : 0;
-    sentiment = val.sentiment == 0.0 ? 1 : sentiment;
-    sentiment = val.sentiment < 0.0 ? 0 : sentiment;
+    sentiment = val.sentiment > 0.1 ? 2 : ( val.sentiment < -0.1 ? 0 : 1 )
+
+    // sentiment = val.sentiment > 0.5 ? 2 : 0;
+    // sentiment = val.sentiment == 0.0 ? 1 : sentiment;
+    // sentiment = val.sentiment < 0.5 ? 0 : sentiment;
 
     var i = sentiment,
         v = 0.1 + Math.abs(val.sentiment)
