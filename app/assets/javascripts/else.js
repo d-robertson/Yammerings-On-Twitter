@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     var counters = JSON.parse(gon.elses[num].counters);
     var birthday = counters.birthday
     var help = counters.help
-    var death = counters.death
+    var trump = counters.trump
     var kill = counters.kill
     var money = counters.money
-    var murder = counters.murder
+    var clinton = counters.clinton
     var pokemon = counters.pokemon
     var total = counters.total
     // I format my data to work with my d3
@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     helpObj["weight"] = 0.5;
     helpObj["width"] = 1;
     helpObj["color"] = "#F47245"
-    deathObj = {};
-    deathObj["id"] = "dth";
-    deathObj["label"] = "death";
-    deathObj["score"] = death;
-    deathObj["weight"] = 0.5;
-    deathObj["width"] = 1;
-    deathObj["color"] = "#FAE38C";
+    trumpObj = {};
+    trumpObj["id"] = "trp";
+    trumpObj["label"] = "trump";
+    trumpObj["score"] = trump;
+    trumpObj["weight"] = 0.5;
+    trumpObj["width"] = 1;
+    trumpObj["color"] = "#FAE38C";
     killObj = {};
     killObj["id"] = "kll";
     killObj["label"] = "kill";
@@ -64,13 +64,13 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     moneyObj["weight"] = 0.5;
     moneyObj["width"] = 1;
     moneyObj["color"] = "#6CC4A4";
-    murderObj = {};
-    murderObj["id"] = "mdr";
-    murderObj["label"] = "murder";
-    murderObj["score"] = murder;
-    murderObj["weight"] = 0.5;
-    murderObj["width"] = 1;
-    murderObj["color"] = "#4776B4";
+    clintonObj = {};
+    clintonObj["id"] = "clnt";
+    clintonObj["label"] = "clinton";
+    clintonObj["score"] = clinton;
+    clintonObj["weight"] = 0.5;
+    clintonObj["width"] = 1;
+    clintonObj["color"] = "#4776B4";
     pokemonObj = {};
     pokemonObj["id"] = "pkmn";
     pokemonObj["label"] = "pokemon";
@@ -80,13 +80,32 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     pokemonObj["color"] = "#5E4EA1";
     //I push my new objects into an array
     var dataArray = [];
+    var numArray = [];
+    // numArray.push(birthdayObj["score"]);
+    // numArray.push(helpObj["score"]);
+    // numArray.push(trumpObj["score"]);
+    // numArray.push(killObj["score"]);
+    // numArray.push(moneyObj["score"]);
+    // numArray.push(clintonObj["score"]);
+    // numArray.push(pokemonObj["score"]);
+    function getMaxOfArray(numArray) {
+      return Math.max.apply(null, numArray);
+    }
     dataArray.push(birthdayObj);
     dataArray.push(helpObj);
-    dataArray.push(deathObj);
+    dataArray.push(trumpObj);
     dataArray.push(killObj);
     dataArray.push(moneyObj);
-    dataArray.push(murderObj);
+    dataArray.push(clintonObj);
     dataArray.push(pokemonObj);
+
+    console.log(dataArray);
+    for(i=0;i<dataArray.length;i++){
+      if(dataArray[i]["score"] >= 1){
+        numArray.push(dataArray[i]["score"]);
+      }
+    }
+    console.log(numArray);
 
     var width = 500,
         height = 500,
@@ -101,13 +120,14 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
       .attr('class', 'd3-tip')
       .offset([0, 0])
       .html(function(d) {
-        return d.data.label + ": <span style='color:orangered'>" + d.data.score + "</span>";
+        return d.data.label + ": <span style='color:orangered'>" + d.data.score + "</span><br>Percent: <span style='color:orangered'>" + ((d.data.score/total)*100).toFixed(2) + "% </span>";
       });
 
     var arc = d3.svg.arc()
       .innerRadius(innerRadius)
       .outerRadius(function (d) { 
-        return (radius - innerRadius) * (d.data.score / 30.0) + innerRadius; 
+        console.log(d.data.score)
+        return (radius - innerRadius) * (d.data.score / getMaxOfArray(numArray)) + innerRadius; 
       });
 
     var outlineArc = d3.svg.arc()
@@ -123,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     svg.call(tip);
 
     d3.csv('aster_data.csv', function(error, data) {
-    
+      
       data.forEach(function(d) {
         d.id     =  d.id;
         d.order  = +d.order;
@@ -153,15 +173,7 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
           .attr("class", "outlineArc")
           .attr("d", outlineArc);  
 
-      // calculate the weighted mean score
-      var score = 
-        dataArray.reduce(function(a, b) {
-          //console.log('a:' + a + ', b.score: ' + b.score + ', b.weight: ' + b.weight);
-          return a + (b.score * b.weight); 
-        }, 0) / 
-        dataArray.reduce(function(a, b) { 
-          return a + b.weight; 
-        }, 0);
+      var score = total;
 
       svg.append("svg:text")
         .attr("class", "aster-score")

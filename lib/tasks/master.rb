@@ -231,7 +231,7 @@ def main
     # =============      ============= #
     if tweet.lang == "en"
       @counter += 1
-        word = tweet.text.scan(/murder|death|help|money|pokemon|birthday|kill/i)
+        word = tweet.text.scan(/trump|clinton|help|money|pokemon|birthday|kill/i)
         word = word[0]
         @total += 1      
         if word
