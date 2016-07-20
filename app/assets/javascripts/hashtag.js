@@ -44,7 +44,7 @@ function makeChart(tweets) {
 
   var linearScale = d3.scale.linear()
                             .domain([minCount, maxCount])
-                            .range([20, 80]);
+                            .range([20, 120]);
 
   // -  -  -  -  -  -  -  -  -  -  -
 
