@@ -13,6 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require d3.v3
 $(function(){ $(document).foundation(); });

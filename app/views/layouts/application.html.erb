@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Yammerings" %></title>
 
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= include_gon %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -32,11 +32,21 @@
 
       <div class="row linkbar text-center main-width">
         <div class="small-3 columns">
-          <i class="fa fa-globe fa-3x" aria-hidden="true"></i>
+          <i class="fa fa-globe fa-3x falinks" aria-hidden="true"></i>
+          <span><a href="/location">States</a></span>
         </div>
-        <div class="small-3 columns">2</div>
-        <div class="small-3 columns">3</div>
-        <div class="small-3 columns">4</div>
+        <div class="small-3 columns">
+          <i class="fa fa-pie-chart fa-3x falinks" aria-hidden="true"></i>
+          <span><a href="/else">Keywords</a></span>
+        </div>
+        <div class="small-3 columns">
+          <i class="fa fa-ellipsis-h fa-3x falinks" aria-hidden="true"></i>
+          <span><a href="/verb">I'm Doing</a></span>
+        </div>
+        <div class="small-3 columns">
+          <i class="fa fa-hashtag fa-3x falinks" aria-hidden="true"></i>
+          <span><a href="/hashtag">Hashtags</a></span>
+        </div>
       </div>
     </div>
 
