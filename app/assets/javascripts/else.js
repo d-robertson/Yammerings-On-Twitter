@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     // store my count variables
     var num = gon.elses.length - 1
     var counters = JSON.parse(gon.elses[num].counters);
+    console.log(counters);
     var birthday = counters.birthday
     var help = counters.help
     var trump = counters.trump
@@ -27,7 +28,8 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     var money = counters.money
     var clinton = counters.clinton
     var pokemon = counters.pokemon
-    var total = counters.total
+    var total = counters["@total"]
+    console.log(total);
     // I format my data to work with my d3
     birthdayObj = {};
     birthdayObj["id"] = "bday";
