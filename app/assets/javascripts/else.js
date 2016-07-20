@@ -184,11 +184,7 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
         .text(Math.round(score));
 
     });
-    
-    if (!timer) {
-      console.log("Setup a loop")
-      timer = setInterval(startAjax, 5000)
-    } 
+     
     return "done";
   }
 
