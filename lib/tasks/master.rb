@@ -184,7 +184,7 @@ def main
         # puts @states
         single_row.state = @states.to_json
 
-        if (Time.now.to_i >= @start_time1 + 900)
+        if (Time.now.to_i >= @start_time1 + 1800)
           @start_time1 = Time.new.to_i
           if @states.length > 0
             # puts single_row
@@ -235,7 +235,7 @@ def main
       end
     end
 
-    if Time.now.to_i >= @start_time2 + 900
+    if Time.now.to_i >= @start_time2 + 1800
       @hash.each do |tag|
         # puts tag[1]
         if tag[1][0] > 10
@@ -266,7 +266,7 @@ def main
           else
             @words[word] = 1
           end 
-          if (Time.now.to_i >= @start_time3 + 900)
+          if (Time.now.to_i >= @start_time3 + 1800)
             @start_time3 = Time.new.to_i
             @words["@total"] = @total
             @words = @words.to_json

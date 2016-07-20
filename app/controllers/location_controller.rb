@@ -5,7 +5,7 @@ class LocationController < ApplicationController
   end
 
   def data
-    data = Location.find_by_id(9)
+    data = Location.last
     render :json => data.state
   end
 end
