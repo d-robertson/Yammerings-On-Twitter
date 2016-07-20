@@ -1,5 +1,6 @@
 require 'tweetstream'
 require 'json'
+@start_time = Time.new.to_i
 @all_tweets = []
 @default_timer = 10
 @timer = @default_timer
@@ -181,14 +182,11 @@ def main
 
         # The Timer. It runs not on time, but on the number of events.
         # Specifically, every x geolocation adds.
-        @timer -= 1
-        if @timer != -1
-          if @timer == 0
-            single_row.save
-            @timer = @default_timer
-          end
-        end
 
+        if (Time.now.to_i >= @start_time + 10)
+          single_row.save
+          @timer = @default_timer
+        end
       end
     end
 
@@ -236,18 +234,17 @@ def main
         @total += 1      
         if word
           word.downcase!
-          @timer -= 1
           if @words[word]
             @words[word] += 1
           else
             @words[word] = 1
           end 
-          if @timer == 0
+          if (Time.now.to_i >= @start_time + 10)
+            @start_time = Time.new.to_i
             @words["@total"] = @total
             @words = @words.to_json
-            @timer = @default_timer
-            @total = 0
             Misc.create(counters: @words)
+            @total = 0
             @words = {}
           end
         end
