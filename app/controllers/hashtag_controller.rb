@@ -4,7 +4,7 @@ class HashtagController < ApplicationController
   end
 
   def data
-    data = Hashtag.where("count > 3").limit(25)
+    data = Hashtag.where("count > 3").limit(50)
     render :json => data
   end
 end
