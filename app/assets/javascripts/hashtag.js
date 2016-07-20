@@ -77,9 +77,11 @@ function makeChart(tweets) {
       .on("tick", tick)
       .start();
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select(".svg-wrapper").append("svg")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height)
+      .attr("class", "svg-element")
+      .attr("viewBox", "0 -200 960 960");
 
   var circle = svg.selectAll("circle")
       .data(nodes)

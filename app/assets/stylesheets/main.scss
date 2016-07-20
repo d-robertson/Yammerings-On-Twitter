@@ -1,3 +1,132 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$background-img: url('maxresdefault.jpg');
+$serif-font: 'Tinos', serif;
+$border-radius: 5px;
+$body-color: #f1f1f1;
+$color1: #482f40;
+$med-width: 800px;
+$med-graph-width: 750px;
+
+.main-width {
+  max-width: $med-width;
+}
+
+.head {
+  margin-top: 40px;
+  h3 {
+    font-family: $serif-font;
+    padding-bottom: 30px;
+  }
+  h6 {
+    color: darkgrey;
+  }
+}
+
+body {
+  background-color: $body-color;
+  background-image: $background-img;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media (max-width: 1130px) {
+    background-size: auto;
+  }
+}
+
+.container {
+  padding: 0 50px;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+// --------------- Misc ------------
+.tooltip {
+  color: black;
+  font-size: 14pt;
+  font-family: $serif-font
+  // content: none;
+}
+
+.tooltip::before {
+  content: none;
+}
+
+// ------ Home Screen & Text Body ------
+
+.home-img {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.home-text-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 760px;
+  height: 475px;
+}
+
+.home-text {
+  position: relative;
+  color: white;
+  font-size: 12pt;
+  p {
+    margin-top: -25px;
+    text-align: left;
+  }
+  .text-limit {
+    max-width: 500px;
+  }
+  h3 {
+    font-family: $serif-font;
+  }
+}
+
+@media (max-width: 800px) {
+  .home-text {
+    display: none;
+  }   
+}
+
+// ---------- Links -------
+
+.linkbar {
+  background: white;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  height: 60px;
+  margin-bottom: 50px;
+  span {
+    font-size: 12pt;
+    color: $color1;
+    // font-weight: bold;
+    margin-left: 5px;
+    a {
+      color: $color1
+    }
+  }
+}
+
+.falinks {
+  margin-top: 10px;
+  color: $color1;
+
+}
+
+
+// ---------- SVG Graph SCSS -------
+
+.svg-wrapper {
+  background: white;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.svg-element, .bubble {
+  width: $med-graph-width;
+  left: 0;
+}
