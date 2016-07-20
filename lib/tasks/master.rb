@@ -154,21 +154,21 @@ def main
     # =============        ============= #
     # ============= Action ============= #
     # =============        ============= #
-    s = tweet.text.scan(/i.*\s([a-z]+ing)/i)
-    if s[0]
-      s = s[0][0]
-      if (s.length < 15 && s.length > 5)
-        if (s =~ /\s/i)
-          next
-        end
-        if s
-          s = s.downcase
-        end
-        my_row = Action.find_or_create_by(verb: s)
-        my_row.count ? my_row.count+=1 : my_row.count=1
-        my_row.save
-      end
-    end
+    # s = tweet.text.scan(/i.*\s([a-z]+ing)/i)
+    # if s[0]
+    #   s = s[0][0]
+    #   if (s.length < 15 && s.length > 5)
+    #     if (s =~ /\s/i)
+    #       next
+    #     end
+    #     if s
+    #       s = s.downcase
+    #     end
+    #     my_row = Action.find_or_create_by(verb: s)
+    #     my_row.count ? my_row.count+=1 : my_row.count=1
+    #     my_row.save
+    #   end
+    # end
 
     # =============             ============= #
     # ============= Geolocation ============= #
@@ -184,7 +184,7 @@ def main
         # puts @states
         single_row.state = @states.to_json
 
-        if (Time.now.to_i >= @start_time1 + 600)
+        if (Time.now.to_i >= @start_time1 + 900)
           @start_time1 = Time.new.to_i
           if @states.length > 0
             # puts single_row
@@ -235,7 +235,7 @@ def main
       end
     end
 
-    if Time.now.to_i >= @start_time2 + 600
+    if Time.now.to_i >= @start_time2 + 900
       @hash.each do |tag|
         # puts tag[1]
         if tag[1][0] > 10
@@ -266,7 +266,7 @@ def main
           else
             @words[word] = 1
           end 
-          if (Time.now.to_i >= @start_time3 + 600)
+          if (Time.now.to_i >= @start_time3 + 900)
             @start_time3 = Time.new.to_i
             @words["@total"] = @total
             @words = @words.to_json
