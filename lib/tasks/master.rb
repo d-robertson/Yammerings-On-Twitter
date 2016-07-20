@@ -4,15 +4,13 @@ require 'json'
 @start_time2 = Time.new.to_i
 @start_time3 = Time.new.to_i
 @all_tweets = []
-@default_timer = 10
-@timer = @default_timer
-@counter = 0
 @total = 0
 @words = {}
 @states = {}
 @array = []
 @hash = {}
 
+@call_count = 0;
 
 # State conversion chart
 def get_abbr(long_state)
@@ -141,7 +139,9 @@ end
 
   
 def main
-  puts "inside main"
+  # puts "inside main"
+  @call_count += 1
+  puts @call_count
   # Analyzer init
   analyzer = Sentimental.new # Create an instance for usage
   analyzer.load_senti_file('lib/tasks/rsentiment.txt') # load our custom made dictionary
@@ -183,12 +183,10 @@ def main
         single_row = Location.new
         # puts @states
         single_row.state = @states.to_json
-        puts single_row
 
-        if (Time.now.to_i >= @start_time1 + 3600)
+        if (Time.now.to_i >= @start_time1 + 600)
           @start_time1 = Time.new.to_i
           if @states.length > 0
-            puts @states
             # puts single_row
             single_row.save
           end
@@ -217,9 +215,9 @@ def main
               analy_score = analyzer.score(tweet.text)
               # make list of hashtags & sentiment. Commit to db every so often
               if analy_score
-                puts '6'
+                # puts '6'
                 if @hash[t]
-                  puts '7'
+                  # puts '7'
                   # Increment count
                   @hash[t][0] = @hash[t][0] + 1
                   #recalculate sentiment based on new entry provided here
@@ -237,9 +235,9 @@ def main
       end
     end
 
-    if Time.now.to_i >= @start_time2 + 3600
+    if Time.now.to_i >= @start_time2 + 600
       @hash.each do |tag|
-        puts tag[1]
+        # puts tag[1]
         if tag[1][0] > 10
           db_hashtag = Hashtag.find_or_create_by(tag: tag[0])
           db_hashtag.count ? db_hashtag.count+=tag[1][0] : db_hashtag.count=tag[1][0]
@@ -258,7 +256,6 @@ def main
     # ============= Misc ============= #
     # =============      ============= #
     if tweet.lang == "en"
-      @counter += 1
         word = tweet.text.scan(/trump|clinton|help|money|pokemon|birthday|kill/i)
         word = word[0]
         @total += 1      
@@ -269,7 +266,7 @@ def main
           else
             @words[word] = 1
           end 
-          if (Time.now.to_i >= @start_time3 + 3600)
+          if (Time.now.to_i >= @start_time3 + 600)
             @start_time3 = Time.new.to_i
             @words["@total"] = @total
             @words = @words.to_json
