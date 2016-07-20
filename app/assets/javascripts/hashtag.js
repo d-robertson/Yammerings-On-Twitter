@@ -12,10 +12,11 @@ function getData2() {
         returnedData = JSON.parse(data);
         // Get max sentiment before proceeding
         var list = Object.keys(returnedData).map(function(key){return returnedData[key].sentiment});
-        var list2 = Object.keys(returnedData).map(function(key){return returnedData[key].cound});
+        var list2 = Object.keys(returnedData).map(function(key){return returnedData[key].count});
         maxSent = Math.max.apply( null, list);
         minSent = Math.min.apply( null, list);
-        maxCount = Math.min.apply( null, list2);
+        maxCount = Math.max.apply( null, list2);
+        minCount = Math.min.apply( null, list2);
         // Render :D
         makeChart(returnedData)
       }
@@ -41,6 +42,10 @@ function makeChart(tweets) {
       .domain(d3.range(m))
       .rangePoints([0, width], 1);
 
+  var linearScale = d3.scale.linear()
+                            .domain([minCount, maxCount])
+                            .range([20, 80]);
+
   // -  -  -  -  -  -  -  -  -  -  -
 
   var nodes = tweets.map(function(val, idx) {
@@ -51,7 +56,7 @@ function makeChart(tweets) {
     var i = sentiment,
         v = 0.1 + Math.abs(val.sentiment)
     return {
-      radius: ((Math.sqrt( val.count > 100 ? 100 : val.count)*1.2 ) * maxRadius) / 2,
+      radius: linearScale(val.count),
       color: d3.interpolate("#faffa0", "#20865a")( (val.sentiment+ Math.abs(minSent))/(Math.abs(minSent)+maxSent) ),
       cx: x(i),
       cy: height / 2,
