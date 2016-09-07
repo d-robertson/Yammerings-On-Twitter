@@ -154,21 +154,21 @@ def main
     # =============        ============= #
     # ============= Action ============= #
     # =============        ============= #
-    # s = tweet.text.scan(/i.*\s([a-z]+ing)/i)
-    # if s[0]
-    #   s = s[0][0]
-    #   if (s.length < 15 && s.length > 5)
-    #     if (s =~ /\s/i)
-    #       next
-    #     end
-    #     if s
-    #       s = s.downcase
-    #     end
-    #     my_row = Action.find_or_create_by(verb: s)
-    #     my_row.count ? my_row.count+=1 : my_row.count=1
-    #     my_row.save
-    #   end
-    # end
+    s = tweet.text.scan(/i.*\s([a-z]+ing)/i)
+    if s[0]
+      s = s[0][0]
+      if (s.length < 15 && s.length > 5)
+        if (s =~ /\s/i)
+          next
+        end
+        if s
+          s = s.downcase
+        end
+        my_row = Action.find_or_create_by(verb: s)
+        my_row.count ? my_row.count+=1 : my_row.count=1
+        my_row.save
+      end
+    end
 
     # =============             ============= #
     # ============= Geolocation ============= #
