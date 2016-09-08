@@ -1,7 +1,9 @@
 class VerbController < ApplicationController
   def index
-    @verbs = Action.where('count > 1')
+    @verbs = Action.all
+
     arrayObj = @verbs
+
     gon.verbs = {}
     gon.verbs["verb"] = "flare"
     gon.verbs["children"] = []

@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
   }
   function everything() {
     console.log("everything hit");
+    console.log(gon.elses);
     // store my count variables
     var num = gon.elses.length - 1
     var counters = JSON.parse(gon.elses[num].counters);
-    console.log(counters);
     var birthday = counters.birthday
     var help = counters.help
     var trump = counters.trump
@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     var clinton = counters.clinton
     var pokemon = counters.pokemon
     var total = counters["@total"]
-    console.log(total);
     // I format my data to work with my d3
     birthdayObj = {};
     birthdayObj["id"] = "bday";
@@ -101,13 +100,13 @@ document.addEventListener("DOMContentLoaded", function(event) {startAjax();});
     dataArray.push(clintonObj);
     dataArray.push(pokemonObj);
 
-    console.log(dataArray);
+    
     for(i=0;i<dataArray.length;i++){
       if(dataArray[i]["score"] >= 1){
         numArray.push(dataArray[i]["score"]);
       }
     }
-    console.log(numArray);
+    
 
     var width = 500,
         height = 500,

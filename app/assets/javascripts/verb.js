@@ -9,8 +9,20 @@ $.ajax({
   url: '/verb',
   dataType: 'text',
   success: function(data) {
+    
     gonVerbs = JSON.parse(gon.verbs).children[0].children
-    var list = Object.keys(gonVerbs).map(function(key){return gonVerbs[key].count});
+    var arrayOfObj = JSON.parse(gonVerbs[0].verb);
+    gonVerbsArray = [];
+
+    for(var i in arrayOfObj){
+      var obj = {};
+      obj.count = arrayOfObj[i];
+      obj.verb = i;
+      gonVerbsArray.push(obj);
+    }
+    
+    // console.log(gonVerbs);
+    var list = Object.keys(gonVerbsArray).map(function(key){return gonVerbsArray[key].count});
     maxValue = Math.max.apply( null, list);
     makeBubbles();
   }
@@ -37,6 +49,16 @@ var svg = d3.select(".svg-wrapper").append("svg")
     .attr("viewBox", "0 0 960 960");
 
 var jsonData = JSON.parse(gon.verbs);
+var newJsonData = JSON.parse(jsonData.children[0].children[0].verb);
+var jsonDataArray = [];
+for(var i in newJsonData){
+  var obj = {};
+  obj.count = newJsonData[i];
+  obj.verb = i;
+  jsonDataArray.push(obj);
+}
+console.log(jsonDataArray);
+jsonData.children[0].children = jsonDataArray;
 
 var node = svg.selectAll(".node")
       .data(bubble.nodes(classes(jsonData))

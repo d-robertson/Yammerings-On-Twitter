@@ -3,12 +3,14 @@ require 'json'
 @start_time1 = Time.new.to_i
 @start_time2 = Time.new.to_i
 @start_time3 = Time.new.to_i
+@start_time4 = Time.new.to_i
 @all_tweets = []
 @total = 0
 @words = {}
 @states = {}
 @array = []
 @hash = {}
+@actions = {}
 
 @call_count = 0;
 
@@ -163,10 +165,21 @@ def main
         end
         if s
           s = s.downcase
+          if @actions[s]
+            @actions[s] += 1
+          else
+            @actions[s] = 1
+          end
+          if (Time.now.to_i >= @start_time4 + 30)
+            @start_time4 = Time.new.to_i
+            @actions = @actions.to_json
+            Action.create(verb: @actions)
+            @actions = {}
+          end
         end
-        my_row = Action.find_or_create_by(verb: s)
-        my_row.count ? my_row.count+=1 : my_row.count=1
-        my_row.save
+        # my_row = Action.find_or_create_by(verb: s)
+        # my_row.count ? my_row.count+=1 : my_row.count=1
+        # my_row.save
       end
     end
 
@@ -184,7 +197,7 @@ def main
         # puts @states
         single_row.state = @states.to_json
 
-        if (Time.now.to_i >= @start_time1 + 1800)
+        if (Time.now.to_i >= @start_time1 + 30)
           @start_time1 = Time.new.to_i
           if @states.length > 0
             # puts single_row
@@ -235,7 +248,7 @@ def main
       end
     end
 
-    if Time.now.to_i >= @start_time2 + 1800
+    if Time.now.to_i >= @start_time2 + 30
       @hash.each do |tag|
         # puts tag[1]
         if tag[1][0] > 10
@@ -266,7 +279,7 @@ def main
           else
             @words[word] = 1
           end 
-          if (Time.now.to_i >= @start_time3 + 1800)
+          if (Time.now.to_i >= @start_time3 + 30)
             @start_time3 = Time.new.to_i
             @words["@total"] = @total
             @words = @words.to_json
